@@ -22,5 +22,5 @@ test("create a awnser", async () => {
 
   console.log(awnser)
 
-  expect(awnser.content).toBe("any_content")
+  expect(awnser.Content).toBe("any_content")
 })

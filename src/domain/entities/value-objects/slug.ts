@@ -1,5 +1,5 @@
 export class Slug {
-  public value: string;
+  private value: string;
 
   constructor(value: string) {
     this.value = value
@@ -7,7 +7,7 @@ export class Slug {
 
   static createFromText(text: string): Slug {
     const slugText = text
-    .normalize('NFKD')
+      .normalize('NFKD')
       .toLowerCase()
       .trim()
       .replace(/\s+/g, '-')

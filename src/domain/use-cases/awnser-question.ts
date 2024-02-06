@@ -18,7 +18,8 @@ export class AwnserQuestionUseCase {
     const awnser = new Awnser({
       content,
       authorId: instructorId,
-      questionId
+      questionId,
+      createdAt: new Date(),
     })
 
     this.awnserRepository.create(awnser)
