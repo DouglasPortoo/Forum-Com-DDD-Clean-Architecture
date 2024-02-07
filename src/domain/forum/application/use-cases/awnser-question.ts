@@ -1,4 +1,5 @@
-import { Awnser } from "../entities/awnser";
+
+import { Awnser } from "../../enterprise/entities/awnser";
 import { AwnserRepository } from "../repositories/awnser-repository";
 
 interface AwnserQuestionUseCaseRequest {
@@ -13,8 +14,8 @@ export class AwnserQuestionUseCase {
   constructor(awnserRepository: AwnserRepository) {
     this.awnserRepository = awnserRepository
   }
-  
-  execute({instructorId,questionId,content}:AwnserQuestionUseCaseRequest) {
+
+  execute({ instructorId, questionId, content }: AwnserQuestionUseCaseRequest) {
     const awnser = new Awnser({
       content,
       authorId: instructorId,
