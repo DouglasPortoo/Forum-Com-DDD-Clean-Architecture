@@ -70,6 +70,10 @@ export class Question {
 
   }
 
+  get Id() {
+    return this.id
+  }
+
   private touch() {
     this.updatedAt = new Date()
   }

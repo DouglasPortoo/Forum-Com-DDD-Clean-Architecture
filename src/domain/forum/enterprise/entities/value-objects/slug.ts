@@ -19,5 +19,8 @@ export class Slug {
     return new Slug(slugText)
   }
 
+  get Value() {
+    return this.value
+  }
 
 }

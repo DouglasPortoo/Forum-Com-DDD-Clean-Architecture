@@ -6,5 +6,5 @@ test("it should be able to create a new slug from text", () => {
 
   console.log(slug)
 
-  expect(slug.value).toBe('example-question-title')
+  expect(slug.Value).toBe('example-question-title')
 })
