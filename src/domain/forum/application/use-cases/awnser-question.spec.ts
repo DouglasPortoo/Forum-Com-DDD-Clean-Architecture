@@ -1,26 +1,26 @@
-import { expect, test } from "vitest"
+import { beforeEach, describe, expect, it, test } from "vitest"
 import { AwnserRepository } from "../repositories/awnser-repository"
 import { AwnserQuestionUseCase } from "./awnser-question"
+import { InMemoryAwnsersRepository } from "../../../../../test/repositories/in-memory-awnsers-repository"
 
-const fakeAwnserRepository: AwnserRepository = {
-  create: async (awnser) => {
-    return
-  }
-}
+let AwnserRepository: InMemoryAwnsersRepository
+let sut : AwnserQuestionUseCase
 
-test("create a awnser", async () => {
-
-  const awnserQuestion = new AwnserQuestionUseCase(fakeAwnserRepository)
-
-  console.log(awnserQuestion)
-
-  const awnser = awnserQuestion.execute({
-    content: "any_content",
-    instructorId: "any_instructor_id",
-    questionId: "any_question_id"
+describe("Awnser Question", () =>{
+  beforeEach(()=>{
+    AwnserRepository = new InMemoryAwnsersRepository()
+    sut = new AwnserQuestionUseCase(AwnserRepository) 
   })
-
-  console.log(awnser)
-
-  expect(awnser.Content).toBe("any_content")
+  it("should be able to create a awnser", async () => {
+  
+    const {awnser} =await sut.execute({
+      content: "any_content",
+      instructorId: "any_instructor_id",
+      questionId: "any_question_id"
+    })
+  
+    console.log(awnser)
+  
+    expect(awnser.Content).toBe("any_content")
+  })
 })
