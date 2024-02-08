@@ -21,8 +21,6 @@ describe("Create Question", () => {
       title: "A volta dos que não foram"
     })
   
-    console.log(question)
-  
     expect(question.Id).toBeTruthy()
   })
 })

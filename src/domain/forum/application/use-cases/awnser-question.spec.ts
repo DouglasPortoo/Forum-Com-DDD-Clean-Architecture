@@ -19,8 +19,6 @@ describe("Awnser Question", () =>{
       questionId: "any_question_id"
     })
   
-    console.log(awnser)
-  
     expect(awnser.Content).toBe("any_content")
   })
 })
