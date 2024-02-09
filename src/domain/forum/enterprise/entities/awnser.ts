@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 
-interface AwnserProps {
+export interface AwnserProps {
   authorId: string;
   questionId: string;
   content: string;
@@ -44,6 +44,10 @@ export class Awnser {
 
   get UpdatedAt() {
     return this.updatedAt
+  }
+
+  get Id() {
+    return this.id
   }
 
   get excerpt() {
