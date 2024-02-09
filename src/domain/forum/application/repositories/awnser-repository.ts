@@ -5,4 +5,5 @@ export interface AwnserRepository {
   create(awnser: Awnser): Promise<void>
   findById(id: string): Promise<Awnser | null>
   delete(awnser: Awnser): Promise<void>
+  save(awnser: Awnser): Promise<void>
 }

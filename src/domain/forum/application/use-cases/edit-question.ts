@@ -1,4 +1,4 @@
-import { P } from "vitest/dist/reporters-1evA5lom";
+import { Question } from "../../enterprise/entities/question";
 import { QuestionRepository } from "../repositories/question-repository";
 
 interface editQuestionRequest {
@@ -8,7 +8,9 @@ interface editQuestionRequest {
   content: string
 }
 
-interface editQuestionResponse { }
+interface editQuestionResponse { 
+  question:Question
+}
 
 export class EditQuestionUseCase {
 
@@ -36,6 +38,8 @@ export class EditQuestionUseCase {
     await this.questionRepository.save(question)
     
 
-    return {}
+    return {
+      question
+    }
   }
 }

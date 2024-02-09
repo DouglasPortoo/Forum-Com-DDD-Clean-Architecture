@@ -26,4 +26,9 @@ export class InMemoryAwnsersRepository implements AwnserRepository {
     this.items.splice(itemIndex,1)
   }
 
+  async save(awnser: Awnser){
+    const itemIndex = this.items.findIndex((item) => item.Id === awnser.Id)
+
+    this.items[itemIndex] = awnser
+  }
 }

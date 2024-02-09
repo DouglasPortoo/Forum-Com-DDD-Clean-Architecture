@@ -1,26 +1,26 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryAwnsersRepository } from "../../../../../test/repositories/in-memory-awnsers-repository";
 import { DeleteAwnserUseCase } from "./delete-awnser";
-import { makeAwnser } from "../../../../../test/factories/make-awnser copy";
+import { makeAwnser } from "../../../../../test/factories/make-awnser";
 
 
 let inMemoryAwnsersRepository: InMemoryAwnsersRepository
 let sut: DeleteAwnserUseCase
 
-describe("Delete Awnser", () =>{
-  beforeEach(()=>{
+describe("Delete Awnser", () => {
+  beforeEach(() => {
     inMemoryAwnsersRepository = new InMemoryAwnsersRepository()
     sut = new DeleteAwnserUseCase(inMemoryAwnsersRepository)
   })
 
-  it('should delete a awnser', async () =>{
-    const newAwnser = makeAwnser({authorId:'author-1',questionId: 'question-1'},'awnser-1')
-    
+  it('should delete a awnser', async () => {
+    const newAwnser = makeAwnser({ authorId: 'author-1', questionId: 'question-1' }, 'awnser-1')
+
     await inMemoryAwnsersRepository.create(newAwnser)
 
     await sut.execute({
-      authorId:'author-1',
-      awnserId:'awnser-1',
+      authorId: 'author-1',
+      awnserId: 'awnser-1',
       questionId: 'question-1'
     })
 
@@ -29,7 +29,7 @@ describe("Delete Awnser", () =>{
   })
 
   it('should not be able to delete a awnser from another user', async () => {
-    const newAwnser = makeAwnser({authorId:'author-1',questionId: 'question-1'},'awnser-1')
+    const newAwnser = makeAwnser({ authorId: 'author-1', questionId: 'question-1' }, 'awnser-1')
 
     await inMemoryAwnsersRepository.create(newAwnser)
 
@@ -43,7 +43,7 @@ describe("Delete Awnser", () =>{
   })
 
   it('should not be able to delete a awnser from another question', async () => {
-    const newAwnser = makeAwnser({authorId:'author-1',questionId: 'question-1'},'awnser-1')
+    const newAwnser = makeAwnser({ authorId: 'author-1', questionId: 'question-1' }, 'awnser-1')
 
     await inMemoryAwnsersRepository.create(newAwnser)
 
