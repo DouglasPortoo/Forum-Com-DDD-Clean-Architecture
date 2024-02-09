@@ -1,34 +1,35 @@
+import { Answer } from "../../enterprise/entities/awnser";
+import { AnswerRepository } from "../repositories/awnser-repository";
 
-import { Awnser } from "../../enterprise/entities/awnser";
-import { AwnserRepository } from "../repositories/awnser-repository";
 
-interface AwnserQuestionUseCaseRequest {
+
+interface AnswerQuestionUseCaseRequest {
   instructorId: string;
   questionId: string;
   content: string
 }
 
-interface awnserQuestionUseCaseResponse {
-  awnser: Awnser
+interface answerQuestionUseCaseResponse {
+  answer: Answer
 }
 
-export class AwnserQuestionUseCase {
-  private awnserRepository: AwnserRepository
+export class AnswerQuestionUseCase {
+  private answerRepository: AnswerRepository
 
-  constructor(awnserRepository: AwnserRepository) {
-    this.awnserRepository = awnserRepository
+  constructor(answerRepository: AnswerRepository) {
+    this.answerRepository = answerRepository
   }
 
-  async execute({ instructorId, questionId, content }: AwnserQuestionUseCaseRequest): Promise<awnserQuestionUseCaseResponse> {
-    const awnser = new Awnser({
+  async execute({ instructorId, questionId, content }: AnswerQuestionUseCaseRequest): Promise<answerQuestionUseCaseResponse> {
+    const answer = new Answer({
       content,
       authorId: instructorId,
       questionId,
       createdAt: new Date(),
     })
 
-   await  this.awnserRepository.create(awnser)
+    await this.answerRepository.create(answer)
 
-    return {awnser}
+    return { answer }
   }
 }

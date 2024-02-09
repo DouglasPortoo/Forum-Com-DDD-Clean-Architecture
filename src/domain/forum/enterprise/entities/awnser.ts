@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 
-export interface AwnserProps {
+export interface AnswerProps {
   authorId: string;
   questionId: string;
   content: string;
@@ -8,7 +8,7 @@ export interface AwnserProps {
   updatedAt?: Date;
 }
 
-export class Awnser {
+export class Answer {
 
   private id: string;
   private content: string;
@@ -17,7 +17,7 @@ export class Awnser {
   private createdAt: Date;
   private updatedAt?: Date;
 
-  constructor(props: AwnserProps, id?: string) {
+  constructor(props: AnswerProps, id?: string) {
     this.id = id ?? randomUUID();
     this.content = props.content;
     this.authorId = props.authorId;

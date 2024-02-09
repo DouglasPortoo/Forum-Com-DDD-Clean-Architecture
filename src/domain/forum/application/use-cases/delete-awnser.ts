@@ -1,37 +1,37 @@
-import { AwnserRepository } from "../repositories/awnser-repository";
+import { AnswerRepository } from "../repositories/answer-repository";
 
-interface DeleteAwnserUseCaseRequest {
+interface DeleteAnswerUseCaseRequest {
   authorId: string
-  awnserId: string
+  answerId: string
   questionId: string
 }
 
-interface DeleteAwnserUseCaseResponse {}
+interface DeleteAnswerUseCaseResponse { }
 
-export class DeleteAwnserUseCase{
+export class DeleteAnswerUseCase {
 
-  private awnserRepository:AwnserRepository
+  private answerRepository: AnswerRepository
 
-  constructor(awnserRepository:AwnserRepository){
-    this.awnserRepository = awnserRepository
+  constructor(answerRepository: AnswerRepository) {
+    this.answerRepository = answerRepository
   }
 
-  async execute({authorId,awnserId,questionId}:DeleteAwnserUseCaseRequest):Promise<DeleteAwnserUseCaseResponse>{
-    const awnser = await this.awnserRepository.findById(awnserId)
+  async execute({ authorId, answerId, questionId }: DeleteAnswerUseCaseRequest): Promise<DeleteAnswerUseCaseResponse> {
+    const answer = await this.answerRepository.findById(answerId)
 
-    if(!awnser){
-      throw new Error('Awnser not found')
+    if (!answer) {
+      throw new Error('Answer not found')
     }
 
-    if(awnser.AuthorId !== authorId){
-      throw new Error('You are not the author of this awnser')
+    if (answer.AuthorId !== authorId) {
+      throw new Error('You are not the author of this answer')
     }
 
-    if(awnser.QuestionId !== questionId){
-      throw new Error('Awnser is not from this question')
+    if (answer.QuestionId !== questionId) {
+      throw new Error('Answer is not from this question')
     }
 
-    await this.awnserRepository.delete(awnser)
+    await this.answerRepository.delete(answer)
 
     return {}
   }

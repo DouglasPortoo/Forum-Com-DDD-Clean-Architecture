@@ -1,43 +1,43 @@
-import { Awnser } from "../../enterprise/entities/awnser";
-import { AwnserRepository } from "../repositories/awnser-repository";
+import { Answer } from "../../enterprise/entities/answer";
+import { AnswerRepository } from "../repositories/answer-repository";
 
-interface editAwnserRequest {
+interface editAnswerRequest {
   authorId: string
-  awnserId: string
+  answerId: string
   content: string
 }
 
-interface editAwnserResponse { 
-  awnser:Awnser
+interface editAnswerResponse {
+  answer: Answer
 }
 
-export class EditAwnserUseCase {
+export class EditAnswerUseCase {
 
-  private awnserRepository: AwnserRepository
+  private answerRepository: AnswerRepository
 
-  constructor(awnserRepository: AwnserRepository) {
-    this.awnserRepository = awnserRepository
+  constructor(answerRepository: AnswerRepository) {
+    this.answerRepository = answerRepository
   }
 
-  async execute({ authorId, content, awnserId }: editAwnserRequest): Promise<editAwnserResponse> {
+  async execute({ authorId, content, answerId }: editAnswerRequest): Promise<editAnswerResponse> {
 
-    const awnser = await this.awnserRepository.findById(awnserId)
+    const answer = await this.answerRepository.findById(answerId)
 
-    if (!awnser) {
-      throw new Error('Awnser not found')
+    if (!answer) {
+      throw new Error('Answer not found')
     }
 
-    if (awnser.AuthorId !== authorId) {
-      throw new Error('You are not the author of this awnser')
+    if (answer.AuthorId !== authorId) {
+      throw new Error('You are not the author of this answer')
     }
 
-    awnser.Content = content
+    answer.Content = content
 
-    await this.awnserRepository.save(awnser)
-    
+    await this.answerRepository.save(answer)
+
 
     return {
-      awnser
+      answer
     }
   }
 }

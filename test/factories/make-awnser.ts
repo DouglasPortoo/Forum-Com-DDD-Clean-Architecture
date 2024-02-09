@@ -1,14 +1,15 @@
-import { Awnser, AwnserProps } from "../../src/domain/forum/enterprise/entities/awnser";
+import { Answer, AnswerProps } from "../../src/domain/forum/enterprise/entities/awnser"
 
-export function makeAwnser(override: Partial<AwnserProps> = {},id?: string) {
-  const awnser = new Awnser({
+
+export function makeAnswer(override: Partial<AnswerProps> = {}, id?: string) {
+  const answer = new Answer({
     authorId: "123",
     questionId: "123",
     content: "content",
     createdAt: new Date(),
     ...override
-  },id)
+  }, id)
 
-  return awnser
+  return answer
 }
 

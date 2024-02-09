@@ -6,7 +6,7 @@ export interface QuestionProps {
   content: string;
   slug: Slug;
   authorId: string;
-  bestAwnserId?: string;
+  bestAnswerId?: string;
   createdAt: Date;
   updatedAt?: Date;
 }
@@ -17,7 +17,7 @@ export class Question {
   private content: string;
   private slug: Slug
   private authorId: string;
-  private bestAwnserId?: string;
+  private bestAnswerId?: string;
   private createdAt: Date;
   private updatedAt?: Date;
 
@@ -27,7 +27,7 @@ export class Question {
     this.content = props.content;
     this.slug = props.slug;
     this.authorId = props.authorId;
-    this.bestAwnserId = props.bestAwnserId;
+    this.bestAnswerId = props.bestAnswerId;
     this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
   }
@@ -50,8 +50,8 @@ export class Question {
     return this.authorId
   }
 
-  get BestAwnserId() {
-    return this.bestAwnserId
+  get BestAnswerId() {
+    return this.bestAnswerId
   }
 
   get CreatedAt() {
@@ -89,8 +89,8 @@ export class Question {
     this.touch()
   }
 
-  set BestAwnserId(awnserId: string | undefined) {
-    this.bestAwnserId = awnserId
+  set BestAnswerId(answerId: string | undefined) {
+    this.bestAnswerId = answerId
     this.touch()
   }
 }
