@@ -1,5 +1,5 @@
 import { Question } from "../../enterprise/entities/question"
-import { AnswerRepository } from "../repositories/awnser-repository"
+import { AnswerRepository } from "../repositories/answer-repository"
 import { QuestionRepository } from "../repositories/question-repository"
 
 

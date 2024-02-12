@@ -1,4 +1,4 @@
-import { Answer, AnswerProps } from "../../src/domain/forum/enterprise/entities/awnser"
+import { Answer, AnswerProps } from "../../src/domain/forum/enterprise/entities/answer"
 
 
 export function makeAnswer(override: Partial<AnswerProps> = {}, id?: string) {

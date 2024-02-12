@@ -1,5 +1,5 @@
-import { Answer } from "../../enterprise/entities/awnser";
-import { AnswerRepository } from "../repositories/awnser-repository";
+import { Answer } from "../../enterprise/entities/answer";
+import { AnswerRepository } from "../repositories/answer-repository";
 
 
 
