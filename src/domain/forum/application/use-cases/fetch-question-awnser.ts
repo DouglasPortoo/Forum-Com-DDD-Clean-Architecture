@@ -1,5 +1,5 @@
 import { Answer } from "../../enterprise/entities/answer";
-import { AnswerRepository } from "../repositories/answer-repository";
+import { AnswerRepository } from "../repositories/answers-repository";
 
 interface FetchQuestionAnswersUseCaseResponse {
   page: number;
@@ -17,8 +17,8 @@ export class FetchQuestionAnswersUseCase {
     this.answerRepository = answerRepository;
   }
 
-  async execute({ page,questionId }: FetchQuestionAnswersUseCaseResponse): Promise<FetchQuestionAnswersUseCaseRequest> {
-    const answers = await this.answerRepository.findByManyQuestionId(questionId,{page});
+  async execute({ page, questionId }: FetchQuestionAnswersUseCaseResponse): Promise<FetchQuestionAnswersUseCaseRequest> {
+    const answers = await this.answerRepository.findByManyQuestionId(questionId, { page });
     return { answers }
   }
 }

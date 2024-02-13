@@ -1,6 +1,6 @@
 import { Question } from "../../enterprise/entities/question"
-import { AnswerRepository } from "../repositories/answer-repository"
-import { QuestionRepository } from "../repositories/question-repository"
+import { AnswerRepository } from "../repositories/answers-repository"
+import { QuestionRepository } from "../repositories/questions-repository"
 
 
 interface ChooseQuestionBestAnswerUseCaseRequest {

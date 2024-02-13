@@ -1,5 +1,5 @@
 import { Answer } from "../../enterprise/entities/answer";
-import { AnswerRepository } from "../repositories/answer-repository";
+import { AnswerRepository } from "../repositories/answers-repository";
 
 interface editAnswerRequest {
   authorId: string

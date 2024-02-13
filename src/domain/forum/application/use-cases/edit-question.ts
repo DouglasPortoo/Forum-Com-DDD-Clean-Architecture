@@ -1,5 +1,5 @@
 import { Question } from "../../enterprise/entities/question";
-import { QuestionRepository } from "../repositories/question-repository";
+import { QuestionRepository } from "../repositories/questions-repository";
 
 interface editQuestionRequest {
   authorId: string
@@ -8,8 +8,8 @@ interface editQuestionRequest {
   content: string
 }
 
-interface editQuestionResponse { 
-  question:Question
+interface editQuestionResponse {
+  question: Question
 }
 
 export class EditQuestionUseCase {
@@ -36,7 +36,7 @@ export class EditQuestionUseCase {
     question.Content = content
 
     await this.questionRepository.save(question)
-    
+
 
     return {
       question

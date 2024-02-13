@@ -1,6 +1,6 @@
 import { Question } from "../../enterprise/entities/question"
 import { Slug } from "../../enterprise/entities/value-objects/slug"
-import { QuestionRepository } from "../repositories/question-repository"
+import { QuestionRepository } from "../repositories/questions-repository"
 
 interface CreatQuestionUseCaseRequest {
   authorId: string
@@ -20,7 +20,7 @@ export class CreatQuestionUseCase {
   }
 
   async execute({ authorId, content, title }: CreatQuestionUseCaseRequest): Promise<CreatQuestionUseCaseResponse> {
-    const question = new Question({authorId,content,title,createdAt: new Date(),slug: Slug.createFromText(title)})
+    const question = new Question({ authorId, content, title, createdAt: new Date(), slug: Slug.createFromText(title) })
     await this.questionRepository.create(question)
     return { question }
   }

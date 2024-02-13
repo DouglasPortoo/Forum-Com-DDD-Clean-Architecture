@@ -1,4 +1,4 @@
-import { AnswerRepository } from "../repositories/answer-repository";
+import { AnswerRepository } from "../repositories/answers-repository";
 
 interface DeleteAnswerUseCaseRequest {
   authorId: string

@@ -1,5 +1,5 @@
 import { PaginationParams } from "../../src/core/pagination-params";
-import { QuestionRepository } from "../../src/domain/forum/application/repositories/question-repository";
+import { QuestionRepository } from "../../src/domain/forum/application/repositories/questions-repository";
 import { Question } from "../../src/domain/forum/enterprise/entities/question";
 
 export class InMemoryQuestionsRepository implements QuestionRepository {
