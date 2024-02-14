@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryAnswersRepository } from "../../../../../test/repositories/in-memory-answers-repository";
 
-import { makeAnswer } from "../../../../../test/factories/make-awnser";
+import { makeAnswer } from "../../../../../test/factories/make-answer";
 import { DeleteAnswerUseCase } from "./delete-awnser";
 
 

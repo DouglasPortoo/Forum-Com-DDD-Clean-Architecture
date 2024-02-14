@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest"
 import { InMemoryAnswersRepository } from "../../../../../test/repositories/in-memory-answers-repository"
 import { FetchQuestionAnswersUseCase } from "./fetch-question-awnser"
-import { makeAnswer } from "../../../../../test/factories/make-awnser"
+import { makeAnswer } from "../../../../../test/factories/make-answer"
 
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository
@@ -16,17 +16,17 @@ describe('Fetch Question Answers', () => {
   it('should be able to fetch question answers', async () => {
     await inMemoryAnswersRepository.create(
       makeAnswer({
-        questionId:'question-1',
+        questionId: 'question-1',
       }),
     )
     await inMemoryAnswersRepository.create(
       makeAnswer({
-        questionId:'question-1',
+        questionId: 'question-1',
       }),
     )
     await inMemoryAnswersRepository.create(
       makeAnswer({
-        questionId:'question-1',
+        questionId: 'question-1',
       }),
     )
 
@@ -42,7 +42,7 @@ describe('Fetch Question Answers', () => {
     for (let i = 1; i <= 22; i++) {
       await inMemoryAnswersRepository.create(
         makeAnswer({
-          questionId:'question-1',
+          questionId: 'question-1',
         }),
       )
     }

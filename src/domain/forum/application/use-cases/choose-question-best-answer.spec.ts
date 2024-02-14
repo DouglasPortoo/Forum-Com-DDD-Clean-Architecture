@@ -3,7 +3,7 @@ import { InMemoryQuestionsRepository } from "../../../../../test/repositories/in
 import { InMemoryAnswersRepository } from "../../../../../test/repositories/in-memory-answers-repository"
 import { ChooseQuestionBestAnswerUseCase } from "./choose-question-best-answer"
 import { makeQuestion } from "../../../../../test/factories/make-question"
-import { makeAnswer } from "../../../../../test/factories/make-awnser"
+import { makeAnswer } from "../../../../../test/factories/make-answer"
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let inMemoryAnswersRepository: InMemoryAnswersRepository
