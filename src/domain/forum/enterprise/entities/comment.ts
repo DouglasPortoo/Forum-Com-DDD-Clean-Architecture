@@ -1,3 +1,5 @@
+import { randomUUID } from "crypto"
+
 export interface CommentProps {
   authorId: string
   content: string
@@ -6,13 +8,14 @@ export interface CommentProps {
 }
 
 export abstract class Comment<Props extends CommentProps> {
-
+  private id: string;
   private authorId: string
   private content: string
   private createdAt: Date
   private updatedAt?: Date
 
-  constructor(props: Props) {
+  constructor(props: Props, id?: string) {
+    this.id = id ?? randomUUID();
     this.authorId = props.authorId
     this.content = props.content
     this.createdAt = props.createdAt

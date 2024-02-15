@@ -1,3 +1,4 @@
+import { Either, left, right } from "../../../../core/either";
 import { AnswerRepository } from "../repositories/answers-repository";
 
 interface DeleteAnswerUseCaseRequest {
@@ -6,7 +7,7 @@ interface DeleteAnswerUseCaseRequest {
   questionId: string
 }
 
-interface DeleteAnswerUseCaseResponse { }
+type DeleteAnswerUseCaseResponse = Either<string, {}>
 
 export class DeleteAnswerUseCase {
 
@@ -20,19 +21,19 @@ export class DeleteAnswerUseCase {
     const answer = await this.answerRepository.findById(answerId)
 
     if (!answer) {
-      throw new Error('Answer not found')
+      return left('Answer not found')
     }
 
     if (answer.AuthorId !== authorId) {
-      throw new Error('You are not the author of this answer')
+      return left('You are not the author of this answer')
     }
 
     if (answer.QuestionId !== questionId) {
-      throw new Error('Answer is not from this question')
+      return left('Answer is not from this question')
     }
 
     await this.answerRepository.delete(answer)
 
-    return {}
+    return right({})
   }
 }
