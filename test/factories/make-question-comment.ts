@@ -1,13 +1,25 @@
-import { QuestionComment, QuestionCommentProps } from "../../src/domain/forum/enterprise/entities/question-comment"
+import { faker } from '@faker-js/faker'
 
-export function makeQuestionComment(override: Partial<QuestionCommentProps> = {}, id?: string) {
-  const questionComment = new QuestionComment({
-    authorId: "123",
-    questionId: "123",
-    content: "content",
-    createdAt: new Date(),
-    ...override
-  }, id)
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
-  return questionComment
+import {
+  QuestionComment,
+  QuestionCommentProps,
+} from '@/domain/forum/enterprise/entities/question-comment'
+
+export function makeQuestionComment(
+  override: Partial<QuestionCommentProps> = {},
+  id?: UniqueEntityID,
+) {
+  const question = QuestionComment.create(
+    {
+      authorId: new UniqueEntityID(),
+      questionId: new UniqueEntityID(),
+      content: faker.lorem.text(),
+      ...override,
+    },
+    id,
+  )
+
+  return question
 }

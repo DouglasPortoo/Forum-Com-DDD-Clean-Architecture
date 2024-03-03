@@ -1,17 +1,28 @@
-import { PaginationParams } from "../../src/core/pagination-params"
-import { AnswerRepository } from "../../src/domain/forum/application/repositories/answers-repository"
-import { Answer } from "../../src/domain/forum/enterprise/entities/answer"
+import { PaginationParams } from '@/core/repositories/pagination-params'
+import { AnswerAttachmentsRepository } from '@/domain/forum/application/repositories/answer-attachments-repository'
+import { AnswersRepository } from '@/domain/forum/application/repositories/answers-repository'
+import { Answer } from '@/domain/forum/enterprise/entities/answer'
 
-
-export class InMemoryAnswersRepository implements AnswerRepository {
-
-
-
+export class InMemoryAnswersRepository implements AnswersRepository {
   public items: Answer[] = []
 
-  async findByManyQuestionId(questionId: string, { page }: PaginationParams) {
+  constructor(
+    private answerAttachmentsRepository: AnswerAttachmentsRepository,
+  ) {}
+
+  async findById(id: string) {
+    const answer = this.items.find((item) => item.id.toString() === id)
+
+    if (!answer) {
+      return null
+    }
+
+    return answer
+  }
+
+  async findManyByQuestionId(questionId: string, { page }: PaginationParams) {
     const answers = this.items
-      .filter((item) => item.QuestionId === questionId)
+      .filter((item) => item.questionId.toString() === questionId)
       .slice((page - 1) * 20, page * 20)
 
     return answers
@@ -21,25 +32,16 @@ export class InMemoryAnswersRepository implements AnswerRepository {
     this.items.push(answer)
   }
 
-  async findById(id: string) {
-    const answer = this.items.find(answer => answer.Id === id)
+  async save(answer: Answer) {
+    const itemIndex = this.items.findIndex((item) => item.id === answer.id)
 
-    if (!answer) {
-      return null
-    }
-
-    return answer
+    this.items[itemIndex] = answer
   }
 
   async delete(answer: Answer) {
-    const itemIndex = this.items.findIndex(item => item.Id === answer.Id)
+    const itemIndex = this.items.findIndex((item) => item.id === answer.id)
 
     this.items.splice(itemIndex, 1)
-  }
-
-  async save(answer: Answer) {
-    const itemIndex = this.items.findIndex((item) => item.Id === answer.Id)
-
-    this.items[itemIndex] = answer
+    this.answerAttachmentsRepository.deleteManyByAnswerId(answer.id.toString())
   }
 }

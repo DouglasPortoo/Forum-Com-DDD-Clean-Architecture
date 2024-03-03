@@ -1,6 +1,4 @@
-import { expect, test } from "vitest"
-import { Either, left, right } from "./either"
-
+import { Either, left, right } from '@/core/either'
 
 function doSomeThing(shouldSuccess: boolean): Either<string, number> {
   if (shouldSuccess) {

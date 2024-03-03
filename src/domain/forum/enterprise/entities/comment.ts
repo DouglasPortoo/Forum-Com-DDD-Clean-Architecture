@@ -1,58 +1,38 @@
-import { randomUUID } from "crypto"
+import { Entity } from '@/core/entities/entity'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
 export interface CommentProps {
-  authorId: string
+  authorId: UniqueEntityID
   content: string
   createdAt: Date
   updatedAt?: Date
 }
 
-export abstract class Comment<Props extends CommentProps> {
-  private id: string;
-  private authorId: string
-  private content: string
-  private createdAt: Date
-  private updatedAt?: Date
-
-  constructor(props: Props, id?: string) {
-    this.id = id ?? randomUUID();
-    this.authorId = props.authorId
-    this.content = props.content
-    this.createdAt = props.createdAt
-    this.updatedAt = props.updatedAt
+export abstract class Comment<
+  Props extends CommentProps,
+> extends Entity<Props> {
+  get authorId() {
+    return this.props.authorId
   }
 
-  get AuthorId() {
-    return this.authorId
+  get content() {
+    return this.props.content
   }
 
-  get Content() {
-    return this.content
+  get createdAt() {
+    return this.props.createdAt
   }
 
-  get CreatedAt() {
-    return this.createdAt
-  }
-
-  get UpdatedAt() {
-    return this.updatedAt
-  }
-
-  get excerpt() {
-    return this.content
-      .substring(0, 120)
-      .trimEnd()
-      .concat('...')
+  get updatedAt() {
+    return this.props.updatedAt
   }
 
   private touch() {
-    this.updatedAt = new Date()
+    this.props.updatedAt = new Date()
   }
 
-  set Content(content: string) {
-    this.content = content
+  set content(content: string) {
+    this.props.content = content
     this.touch()
   }
-
-
 }

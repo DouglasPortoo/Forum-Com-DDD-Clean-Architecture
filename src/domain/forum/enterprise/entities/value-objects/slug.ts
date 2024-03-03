@@ -1,10 +1,21 @@
 export class Slug {
-  private value: string;
+  public value: string
 
-  constructor(value: string) {
+  private constructor(value: string) {
     this.value = value
   }
 
+  static create(value: string) {
+    return new Slug(value)
+  }
+
+  /**
+   * Receives a string and normalize it as a slug.
+   *
+   * Example: "An example title" => "an-example-title"
+   *
+   * @param text {string}
+   */
   static createFromText(text: string): Slug {
     const slugText = text
       .normalize('NFKD')
@@ -18,9 +29,4 @@ export class Slug {
 
     return new Slug(slugText)
   }
-
-  get Value() {
-    return this.value
-  }
-
 }

@@ -1,16 +1,24 @@
-import { Question, QuestionProps } from "../../src/domain/forum/enterprise/entities/question";
-import { Slug } from "../../src/domain/forum/enterprise/entities/value-objects/slug";
+import { faker } from '@faker-js/faker'
 
-export function makeQuestion(override: Partial<QuestionProps> = {},id?: string) {
-  const question = new Question({
-    authorId: "123",
-    content: "content",
-    title: "A volta dos que não foram",
-    slug: Slug.createFromText("A volta dos que não foram "),
-    createdAt: new Date(),
-    ...override
-  },id)
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import {
+  Question,
+  QuestionProps,
+} from '@/domain/forum/enterprise/entities/question'
+
+export function makeQuestion(
+  override: Partial<QuestionProps> = {},
+  id?: UniqueEntityID,
+) {
+  const question = Question.create(
+    {
+      authorId: new UniqueEntityID(),
+      title: faker.lorem.sentence(),
+      content: faker.lorem.text(),
+      ...override,
+    },
+    id,
+  )
 
   return question
 }
-
